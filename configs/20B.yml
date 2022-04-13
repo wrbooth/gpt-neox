@@ -3,6 +3,9 @@
 # the model in memory.
 
 {
+  # text input
+  "text-gen-type": "interactive",
+  
   # Tokenizer /  checkpoint settings - you will need to change these to the location you have them saved in
   "vocab-file": "./20B_checkpoints/20B_tokenizer.json",
   "save": "./20B_checkpoints",
