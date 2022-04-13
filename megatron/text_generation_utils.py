@@ -723,7 +723,14 @@ def generate_samples_interactive(
 
         if torch.distributed.is_initialized() and torch.distributed.get_rank() == 0:
             os.system("clear")
-            raw_text = input("Context prompt >>> ")
+            contents = []
+            while True:
+                try:
+                    line = input("Context prompt >>> ")
+                except EOFError:
+                    break
+                contents.append(line)
+            raw_text = "\n".join(contents)
             context_tokens = neox_args.tokenizer.tokenize(raw_text)
             if len(context_tokens) == 0:
                 context_tokens = [neox_args.tokenizer.eod]
